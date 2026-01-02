@@ -3,7 +3,7 @@ package ru.mentee.power;
 public class ProgressDemo {
 
     static void main() {
-        System.out.println("Текущая ветка: master");
+        System.out.println("Текущая ветка: 'master'");
         MenteeProgress progress = new MenteeProgress
                 ("Denis Sever", 2, 5);
 
