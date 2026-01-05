@@ -1,17 +1,21 @@
 package ru.mentee.power;
 
+import ru.mentee.power.devtools.progress.Mentee;
+import ru.mentee.power.devtools.progress.ProgressTracker;
+
 public class ProgressDemo {
 
     static void main() {
-        System.out.println("Текущая ветка: 'master'");
-        MenteeProgress progress = new MenteeProgress
-                ("Denis Sever", 2, 5);
 
-        System.out.println(progress.summary());
-        if (progress.readyForSprint()) {
-            System.out.println("Status: sprint ready");
-        } else {
-            System.out.println("Status: backlog first");
-        }
+        ProgressTracker tracker = new ProgressTracker();
+        Mentee[] mentees = {
+                new Mentee("Иван", "Москва", "Backend разработка", 5, 12),
+                new Mentee("Мария", "Санкт-Петербург", "Fullstack", 8, 12),
+                new Mentee("Пётр", "Казань", "Java Backend", 12, 12)
+        };
+
+        String progress = tracker.calculateTotalProgress(mentees);
+        System.out.println(progress);
+
     }
 }
