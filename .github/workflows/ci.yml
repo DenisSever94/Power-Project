@@ -32,11 +32,11 @@ jobs:
        run: ./gradlew --no-daemon test
 
      - name: Generate JaCoCo report
-       run: ./gradlew --no-deamon jacocoTestReport
+       run: ./gradlew --no-daemon jacocoTestReport
 
      - name: Verify code coverage
-       run: ./gradlew --no-deamon jacocoTestCoverageVerification
+       run: ./gradlew --no-daemon jacocoTestCoverageVerification
 
      - name: Build project
-       run: ./gradlew --no-deamon build
+       run: ./gradlew --no-daemon build
       
