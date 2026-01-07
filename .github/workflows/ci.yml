@@ -40,6 +40,5 @@ jobs:
      - name: Build project
        run: ./gradlew --no-deamon build
        
- 
 
    
