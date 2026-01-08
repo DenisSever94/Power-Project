@@ -1,9 +1,13 @@
 package ru.mentee.power;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.mentee.power.devtools.progress.Mentee;
 import ru.mentee.power.devtools.progress.ProgressTracker;
 
 public class ProgressDemo {
+  private static final Logger LOG = LoggerFactory.getLogger(ProgressDemo.class);
+
   public static void main(String[] args) {
     ProgressTracker tracker = new ProgressTracker();
     Mentee[] mentees = {
@@ -13,6 +17,6 @@ public class ProgressDemo {
     };
 
     String progress = tracker.calculateTotalProgress(mentees);
-    System.out.println(progress);
+    LOG.info(progress);
   }
 }

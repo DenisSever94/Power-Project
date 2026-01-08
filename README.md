@@ -1,10 +1,8 @@
 # My devtools project
 [![Java CI with Checkstyle and JaCoCo](https://github.com/DenisSever94/Devtools-Project/actions/workflows/ci.yml/badge.svg)](https://github.com/DenisSever94/Devtools-Project/actions/workflows/ci.yml)
-
 # Practice Project
 
 # Quick start:
-
 
 ### Через Gradle Tool Window:
 Откройте в правой части IDEA вкладку Gradle 
