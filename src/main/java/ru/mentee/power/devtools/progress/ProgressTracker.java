@@ -10,7 +10,7 @@ public class ProgressTracker {
    */
   public String calculateTotalProgress(Mentee[] mentees) {
     if (mentees == null || mentees.length == 0) {
-      throw new ArithmeticException("Array not must be null or = 0");
+      throw new IllegalArgumentException("Массив не должен быть null или = 0");
     }
 
     int totalCompleted = 0;

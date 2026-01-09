@@ -1,6 +1,7 @@
 package ru.mentee.power.devtools.progress;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,5 +47,26 @@ class ProgressLoopTest {
 
     String result = tracker.calculateTotalProgress(mentees);
     assertThat(result).contains("Суммарно пройдено: 0 из 24").contains("Осталось: 24");
+  }
+
+  @Test
+  @DisplayName("Должен выбрасывать исключение при null")
+  void shouldThrowExceptionOnNull() {
+    ProgressTracker tracker = new ProgressTracker();
+
+    assertThatThrownBy(() -> tracker.calculateTotalProgress(null))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Массив не должен быть null или = 0");
+  }
+
+  @Test
+  @DisplayName("Должен выбросить исключение при пустом массиве")
+  void shouldThrowExceptionOnEmptyArray() {
+    ProgressTracker tracker = new ProgressTracker();
+    Mentee[] emptyMentees = {};
+
+    assertThatThrownBy(() -> tracker.calculateTotalProgress(emptyMentees))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Массив не должен быть null или = 0");
   }
 }
