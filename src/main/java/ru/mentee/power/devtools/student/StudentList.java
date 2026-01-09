@@ -17,8 +17,12 @@ public class StudentList {
     }
   }
 
-  public List<Student> getStudentsByCity(
+  public List<Student> findStudentsByCity(
       String city) {
     return students.stream().filter(s -> s.city().equals(city)).toList();
+  }
+
+  public List<Student> findStudentByName(String name) {
+    return students.stream().filter(n -> n.name().equals(name)).toList();
   }
 }

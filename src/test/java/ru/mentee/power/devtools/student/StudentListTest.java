@@ -23,7 +23,7 @@ class StudentListTest {
 
     students.addStudent(ivan);
 
-    List<Student> studentFromMoscow = students.getStudentsByCity("Москва");
+    List<Student> studentFromMoscow = students.findStudentsByCity("Москва");
     assertThat(studentFromMoscow)
         .hasSize(1)
         .containsExactly(ivan);
@@ -48,7 +48,22 @@ class StudentListTest {
 
     students.addStudent(null);
 
-    assertThat(students.getStudentsByCity("Любой город")).isEmpty();
+    assertThat(students.findStudentsByCity("Любой город")).isEmpty();
+  }
+
+  @Test
+  @DisplayName("Должен вернуть студента по имени")
+  void shouldFindStudentByName() {
+    StudentList students = new StudentList();
+    students.addStudent(new Student("Иван", "Москва"));
+    students.addStudent(new Student("Мария", "Казань"));
+
+    List<Student> found = students.findStudentByName("Мария");
+
+    assertThat(found)
+        .hasSize(1)
+        .extracting(Student::name)
+        .containsExactlyInAnyOrder("Мария");
   }
 
   @Test
@@ -57,12 +72,23 @@ class StudentListTest {
     StudentList students = new StudentList();
     students.addStudent(new Student("Иван", "Москва"));
 
-    List<Student> result = students.getStudentsByCity("Москва");
+    List<Student> found = students.findStudentsByCity("Москва");
 
-    assertThat(result)
+    assertThat(found)
         .hasSize(1)
         .extracting(Student::city)
         .containsExactlyInAnyOrder("Москва");
+  }
+
+  @Test
+  @DisplayName("Должен вернуть null если студента с указанным именем не существует")
+  void shouldReturnsNullWhenStudentNotFound() {
+    StudentList students = new StudentList();
+    students.addStudent(new Student("Иван","Москва"));
+
+    List<Student> found = students.findStudentByName("Несуществующий");
+
+    assertThat(found).isNotNull();
   }
 
   @Test
@@ -73,7 +99,7 @@ class StudentListTest {
     list.addStudent(new Student("Иван", "Пермь"));
     list.addStudent(new Student("Дмитрий", "Москва"));
 
-    List<Student> result = list.getStudentsByCity("Москва");
+    List<Student> result = list.findStudentsByCity("Москва");
 
     assertThat(result)
         .hasSize(2)
