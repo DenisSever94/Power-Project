@@ -32,8 +32,8 @@ class StudentListTest {
   @Test
   @DisplayName("Добавление name null and city null в коллекцию")
   void shouldAddStudentWithNullFields() {
-    Student studentWithNulls = new Student(null, null);
     StudentList student = new StudentList();
+    Student studentWithNulls = new Student(null, null);
 
     student.addStudent(studentWithNulls);
 
@@ -53,7 +53,7 @@ class StudentListTest {
 
   @Test
   @DisplayName("Должен вернуть студента по имени")
-  void shouldFindStudentByName() {
+  void shouldReturnStudentFromSpecificName() {
     StudentList students = new StudentList();
     students.addStudent(new Student("Иван", "Москва"));
     students.addStudent(new Student("Мария", "Казань"));
@@ -67,8 +67,19 @@ class StudentListTest {
   }
 
   @Test
+  @DisplayName("Должен вернуть null если студента с указанным именем не существует")
+  void shouldReturnsNullWhenStudentNameNotFound() {
+    StudentList students = new StudentList();
+    students.addStudent(new Student("Иван", "Москва"));
+
+    List<Student> notFound = students.findStudentByName("Несуществующий");
+
+    assertThat(notFound).isNotNull();
+  }
+
+  @Test
   @DisplayName("Должен вернуть студента по городу")
-  void shouldReturnStudentFromSpecificCityAndName() {
+  void shouldReturnStudentFromSpecificCity() {
     StudentList students = new StudentList();
     students.addStudent(new Student("Иван", "Москва"));
 
@@ -81,14 +92,14 @@ class StudentListTest {
   }
 
   @Test
-  @DisplayName("Должен вернуть null если студента с указанным именем не существует")
-  void shouldReturnsNullWhenStudentNotFound() {
+  @DisplayName("Должен вернуть null если студента с указанным городом не существует")
+  void shouldReturnsNullWhenStudentCityNotFound() {
     StudentList students = new StudentList();
-    students.addStudent(new Student("Иван","Москва"));
+    students.addStudent(new Student("Иван", "Москва"));
 
-    List<Student> found = students.findStudentByName("Несуществующий");
+    List<Student> notFound = students.findStudentsByCity("Несуществующий");
 
-    assertThat(found).isNotNull();
+    assertThat(notFound).isNotNull();
   }
 
   @Test
